@@ -23,14 +23,28 @@ namespace APIClientes.Services
 
         public Cliente GetClienteById(int id)
         {
-            Cliente cliente = _clienteDA.GetClienteById(id);
-            return cliente;
+            Cliente clienteMatch = _clienteDA.GetClienteById(id);
+            return clienteMatch;
         }
 
         public Cliente GetClienteByName(string name)
         {
             Cliente clienteMatch = _clienteDA.GetClienteByName(name);
             return clienteMatch;
+        }
+
+        public void InsertCliente(Cliente cliente)
+        {
+            bool result = _clienteDA.InsertCliente(cliente);
+
+            if (result == false)
+            {
+                
+            }
+            else
+            {
+               
+            }
         }
     }
 }

@@ -46,13 +46,13 @@ namespace APIClientes.Controllers
             if (cliente == null)
             {
                 return NotFound("No existe un cliente con ese ID.");
-            }            
+            }
 
             return cliente;
         }
 
-       // GET: api/Clientes/nombre
-       [HttpGet("{nombre}")]
+        // GET: api/Clientes/nombre
+        [HttpGet("{nombre}")]
         public async Task<ActionResult<Cliente>> SearchByName(string nombre)
         {
             var cliente = _clienteService.GetClienteByName(nombre);
@@ -60,24 +60,29 @@ namespace APIClientes.Controllers
             if (cliente == null)
             {
                 return NotFound("No existe un cliente con ese nombre.");
-            }          
+            }
 
             return cliente;
         }
 
-        //    POST: api/Clientes
-        //   [HttpPost]
-        //    public async Task<ActionResult<Cliente>> InsertCliente(Cliente cliente)
-        //    {
-        //        if (_context.Clientes == null)
-        //        {
-        //            return Problem("Entity set 'ClientesContext.Clientes'  is null.");
-        //        }
-        //        _context.Clientes.Add(cliente);
-        //        await _context.SaveChangesAsync();
+        // POST: api/Clientes
+        [HttpPost]
+        public async Task<ActionResult<Cliente>> InsertCliente(Cliente cliente)
+        {
+            //validar que ingresen bien los tipos de datos, en un formato correcto
+            //validar que no se ingrese un cliente que ya existe
 
-        //        return CreatedAtAction("GetCliente", new { id = cliente.IdCliente }, cliente);
-        //    }
+            return BadRequest();
+
+            if (_context.Clientes == null)
+            {
+                return Problem("Entity set 'ClientesContext.Clientes' is null.");
+            }
+            _context.Clientes.Add(cliente);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetCliente", new { id = cliente.IdCliente }, cliente);
+        }
 
 
         //    PUT: api/Clientes/5
@@ -107,7 +112,7 @@ namespace APIClientes.Controllers
         //            }
         //        }
 
-        //        return NoContent();
+        //       return NoContent();
         //    }
 
 
