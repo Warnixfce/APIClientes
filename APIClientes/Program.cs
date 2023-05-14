@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ClientesContext>
 
 //Dependency Inyection
 builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IValidationsService, ValidationsService>();
 builder.Services.AddScoped<ClienteDA>();
 
 var app = builder.Build();

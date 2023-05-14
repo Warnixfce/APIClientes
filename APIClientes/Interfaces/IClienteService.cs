@@ -10,5 +10,7 @@ namespace APIClientes.Interfaces
 
         public Cliente GetClienteByName(string name);
 
+        public bool InsertCliente(Cliente cliente);
+
     }
 }

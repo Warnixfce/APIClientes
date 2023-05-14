@@ -15,13 +15,13 @@ namespace APIClientes.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        private readonly ClientesContext _context;
         private readonly IClienteService _clienteService;
+        private readonly IValidationsService _validationsService;
 
-        public ClientesController(ClientesContext context, IClienteService clienteService)
+        public ClientesController(IClienteService clienteService, IValidationsService validationsService)
         {
-            _context = context;
             _clienteService = clienteService;
+            _validationsService = validationsService;
         }
 
         // GET: api/Clientes
@@ -70,18 +70,22 @@ namespace APIClientes.Controllers
         public async Task<ActionResult<Cliente>> InsertCliente(Cliente cliente)
         {
             //validar que ingresen bien los tipos de datos, en un formato correcto
+            _validationsService.FechaNacimientoValidation(cliente.FechaNacimiento.ToString());
+
             //validar que no se ingrese un cliente que ya existe
+            var result = _clienteService.InsertCliente(cliente);
+            if (result == false) { return BadRequest("El cliente que desea ingresar ya existe."); }
 
-            return BadRequest();
+            return Ok($"Cliente ingresado con éxito:\n{cliente}");
 
-            if (_context.Clientes == null)
-            {
-                return Problem("Entity set 'ClientesContext.Clientes' is null.");
-            }
-            _context.Clientes.Add(cliente);
-            await _context.SaveChangesAsync();
+            //if (_context.Clientes == null)
+            //{
+            //    return Problem("Entity set 'ClientesContext.Clientes' is null.");
+            //}
+            //_context.Clientes.Add(cliente);
+            //await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCliente", new { id = cliente.IdCliente }, cliente);
+            //return CreatedAtAction("GetCliente", new { id = cliente.IdCliente }, cliente);
         }
 
 

@@ -33,18 +33,10 @@ namespace APIClientes.Services
             return clienteMatch;
         }
 
-        public void InsertCliente(Cliente cliente)
+        public bool InsertCliente(Cliente cliente)
         {
             bool result = _clienteDA.InsertCliente(cliente);
-
-            if (result == false)
-            {
-                
-            }
-            else
-            {
-               
-            }
+            return result;
         }
     }
 }

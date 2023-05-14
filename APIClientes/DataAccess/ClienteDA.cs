@@ -39,6 +39,7 @@ namespace APIClientes.DataAccess
             }
             else
             {
+            //    cliente.FechaNacimiento = 
                 _context.Clientes.Add(cliente);
                 _context.SaveChanges();
                 return true;
