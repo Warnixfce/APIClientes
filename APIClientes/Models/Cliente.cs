@@ -31,7 +31,8 @@ namespace APIClientes.Models
 
         public override string ToString()
         {
-            return string.Concat($"Nombres: {Nombres}\nApellidos: {Apellidos}\nFecha de Nacimiento: {FechaNacimiento}\nCUIT: {Cuit}\nDomicilio: {Domicilio}\n Teléfono celular: {TelCelular}");
+            return string.Concat($"Nombres: {Nombres} \nApellidos: {Apellidos} \nFecha de Nacimiento: {FechaNacimiento.ToString("yyy/MM/dd")}" +
+                $"\nCUIT: {Cuit} \nDomicilio: {Domicilio} \nTeléfono celular: {TelCelular} \nEmail: {Email}");
         }
     }
 }

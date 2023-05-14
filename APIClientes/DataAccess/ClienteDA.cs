@@ -30,16 +30,16 @@ namespace APIClientes.DataAccess
             return clienteMatch;
         }
 
-        public bool InsertCliente(Cliente cliente)
+        public bool InsertCliente(Cliente cliente, ref string message)
         {
             Cliente clienteMatch = _context.Clientes.FirstOrDefault(m => m.Cuit == cliente.Cuit); //validar que ya exista
             if (clienteMatch != null )
             {
+                message = $"Ingreso inválido. El cliente ya se encuentra ingresado. Datos ingresados:\n\n{cliente}";
                 return false;
             }
             else
             {
-            //    cliente.FechaNacimiento = 
                 _context.Clientes.Add(cliente);
                 _context.SaveChanges();
                 return true;

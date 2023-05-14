@@ -69,14 +69,26 @@ namespace APIClientes.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> InsertCliente(Cliente cliente)
         {
-            //validar que ingresen bien los tipos de datos, en un formato correcto
-            _validationsService.FechaNacimientoValidation(cliente.FechaNacimiento.ToString());
+            #region DataValidations
+            string message = "";
+            // -Fecha de nacimiento      
+            var resultFechaNac = _validationsService.FechaNacimientoValidation(cliente.FechaNacimiento.ToString(), ref message);
+            if (resultFechaNac == false) { return BadRequest(message); }
+            // -CUIT
+            string cuit = cliente.Cuit;
+            var resultCuit = _validationsService.CuitValidation(ref cuit, ref message);
+            if (resultCuit == false) { return BadRequest(message); }
+            cliente.Cuit = cuit;
+            // -Email
+            var resultEmail = _validationsService.EmailValidation(cliente.Email, ref message);
+            if (resultEmail == false) { return BadRequest(message); }
+            #endregion
 
             //validar que no se ingrese un cliente que ya existe
-            var result = _clienteService.InsertCliente(cliente);
-            if (result == false) { return BadRequest("El cliente que desea ingresar ya existe."); }
+            var result = _clienteService.InsertCliente(cliente, ref message);
+            if (result == false) { return BadRequest(message); }
 
-            return Ok($"Cliente ingresado con éxito:\n{cliente}");
+            return Ok($"Cliente ingresado con éxito!\n\n{cliente}");
 
             //if (_context.Clientes == null)
             //{

@@ -33,9 +33,9 @@ namespace APIClientes.Services
             return clienteMatch;
         }
 
-        public bool InsertCliente(Cliente cliente)
+        public bool InsertCliente(Cliente cliente, ref string message)
         {
-            bool result = _clienteDA.InsertCliente(cliente);
+            bool result = _clienteDA.InsertCliente(cliente, ref message);
             return result;
         }
     }
