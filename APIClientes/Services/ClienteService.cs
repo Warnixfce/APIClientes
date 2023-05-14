@@ -44,5 +44,16 @@ namespace APIClientes.Services
             bool result = _clienteDA.UpdateCliente(cuit, cliente, ref message);
             return result;
         }
+
+        public Cliente GetClienteByCuit(string cuit, ref string message)
+        {
+            Cliente clienteMatch = _clienteDA.GetClienteByCuit(cuit, ref message);
+            return clienteMatch;
+        }
+
+        public void DeleteCliente(Cliente cliente)
+        {
+            _clienteDA.DeleteCliente(cliente);
+        }
     }
 }

@@ -106,31 +106,20 @@ namespace APIClientes.Controllers
             return Ok($"Cliente actualizado con éxito!\n\n{cliente}");
         }
 
+        // DELETE: api/Clientes/cuit
+        [HttpDelete("{cuit}")]
+        public async Task<IActionResult> DeleteCliente(string cuit)
+        {
+            string message = "";
+            var resultCuit = _validationsService.CuitValidation(ref cuit, ref message);
+            if (resultCuit == false) { return BadRequest(message); }
 
+            Cliente cliente = _clienteService.GetClienteByCuit(cuit, ref message);
+            if (cliente == null) { return BadRequest(message); }
 
-        //    // DELETE: api/Clientes/5
-        //    [HttpDelete("{id}")]
-        //    public async Task<IActionResult> DeleteCliente(int id)
-        //    {
-        //        if (_context.Clientes == null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        var cliente = await _context.Clientes.FindAsync(id);
-        //        if (cliente == null)
-        //        {
-        //            return NotFound();
-        //        }
+            _clienteService.DeleteCliente(cliente);
 
-        //        _context.Clientes.Remove(cliente);
-        //        await _context.SaveChangesAsync();
-
-        //        return NoContent();
-        //    }
-
-        //    private bool ClienteExists(int id)
-        //    {
-        //        return (_context.Clientes?.Any(e => e.IdCliente == id)).GetValueOrDefault();
-        //    }
+            return Ok($"Cliente eliminado con éxito! \n\nDatos del cliente:\n{cliente}");
+        }
     }
 }

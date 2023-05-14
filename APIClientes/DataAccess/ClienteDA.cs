@@ -62,9 +62,20 @@ namespace APIClientes.DataAccess
             clienteMatch.Email = cliente.Email;
             _context.SaveChanges();
             return true;
+                        
+        }
 
-           
-            
+        public Cliente GetClienteByCuit(string cuit, ref string message)
+        {
+            Cliente clienteMatch = _context.Clientes.FirstOrDefault(m => m.Cuit == cuit);
+            if (clienteMatch == null) { message = $"No se ha encontrado un cliente con el CUIT '{cuit}'."; }
+            return clienteMatch;
+        }
+
+        public void DeleteCliente(Cliente cliente)
+        {
+            _context.Clientes.Remove(cliente);
+            _context.SaveChanges();            
         }
 
     }

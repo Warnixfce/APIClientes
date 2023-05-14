@@ -14,5 +14,9 @@ namespace APIClientes.Interfaces
 
         public bool UpdateCliente(string cuit, Cliente cliente, ref string message);
 
+        public Cliente GetClienteByCuit(string cuit, ref string message);
+
+        public void DeleteCliente(Cliente cliente);
+
     }
 }
