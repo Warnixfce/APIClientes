@@ -38,5 +38,11 @@ namespace APIClientes.Services
             bool result = _clienteDA.InsertCliente(cliente, ref message);
             return result;
         }
+
+        public bool UpdateCliente(string cuit, Cliente cliente, ref string message)
+        {
+            bool result = _clienteDA.UpdateCliente(cuit, cliente, ref message);
+            return result;
+        }
     }
 }

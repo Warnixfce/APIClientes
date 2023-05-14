@@ -84,52 +84,27 @@ namespace APIClientes.Controllers
             if (resultEmail == false) { return BadRequest(message); }
             #endregion
 
-            //validar que no se ingrese un cliente que ya existe
             var result = _clienteService.InsertCliente(cliente, ref message);
             if (result == false) { return BadRequest(message); }
 
             return Ok($"Cliente ingresado con éxito!\n\n{cliente}");
-
-            //if (_context.Clientes == null)
-            //{
-            //    return Problem("Entity set 'ClientesContext.Clientes' is null.");
-            //}
-            //_context.Clientes.Add(cliente);
-            //await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetCliente", new { id = cliente.IdCliente }, cliente);
         }
 
 
-        //    PUT: api/Clientes/5
-        //    [HttpPut("{id}")]
-        //    public async Task<IActionResult> UpdateCliente(int id, Cliente cliente)
-        //    {
-        //        if (id != cliente.IdCliente)
-        //        {
-        //            return BadRequest();
-        //        }
+        // PUT: api/Clientes/cuit
+        [HttpPut("{cuit}")]
+        public async Task<IActionResult> UpdateCliente(string cuit, Cliente cliente)
+        {
+            string message = "";
+            var resultCuit = _validationsService.CuitValidation(ref cuit, ref message);
+            if (resultCuit == false) { return BadRequest(message); }
+            cliente.Cuit = cuit;
 
-        //        _context.Entry(cliente).State = EntityState.Modified;
+            var result = _clienteService.UpdateCliente(cuit, cliente, ref message);
+            if (result == false) { return BadRequest(message); }
 
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ClienteExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-
-        //       return NoContent();
-        //    }
+            return Ok($"Cliente actualizado con éxito!\n\n{cliente}");
+        }
 
 
 

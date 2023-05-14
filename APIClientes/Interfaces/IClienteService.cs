@@ -12,5 +12,7 @@ namespace APIClientes.Interfaces
 
         public bool InsertCliente(Cliente cliente, ref string message);
 
+        public bool UpdateCliente(string cuit, Cliente cliente, ref string message);
+
     }
 }
