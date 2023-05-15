@@ -27,7 +27,7 @@ Needed for testing purposes
 
 -The SQL Database script is the 'ClientesScript' file. It has the database settings needed for testing and some data.
 
-- The PUT and DELETE endpoints need the client's CUIT in the URL to test them (without any dash).
+-The PUT and DELETE endpoints need the client's CUIT in the URL to test them (without any dash).
 ```
 
 
