@@ -21,6 +21,8 @@ Needed for testing purposes
 ```
 -In order to work correctly, please change the Data Source in the appsettings.json file when going to run the application. To do so, use the information provided by SQL Server Management Studio. 
 
+-There's a .txt file called 'Json tests - Postman' which has two examples for you to use for testing. I used Postman but you could use another application. I thought it could be useful for you! 
+
 -When testing in Postman for example, please change the URL to adjust it to your environment, while the API is runnning.
 
 -The SQL Database script is the 'ClientesScript' file. It has the database settings needed for testing and some data.
