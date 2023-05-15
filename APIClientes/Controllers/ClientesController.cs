@@ -47,7 +47,6 @@ namespace APIClientes.Controllers
             {
                 return NotFound("No existe un cliente con ese ID.");
             }
-
             return cliente;
         }
 
@@ -61,7 +60,6 @@ namespace APIClientes.Controllers
             {
                 return NotFound("No existe un cliente con ese nombre.");
             }
-
             return cliente;
         }
 
