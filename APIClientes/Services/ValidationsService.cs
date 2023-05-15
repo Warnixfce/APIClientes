@@ -85,21 +85,6 @@ namespace APIClientes.Services
                 message = "Email incorrecto. No es un mail válido.";
                 return false;
             }
-
-
-            //if (!email.Contains("@"))
-            //{
-            //    message = "Email incorrecto. Debe tener una dirección válida";
-            //    return false;
-            //}
-            //int count = email.Count(f => f == '@');
-            //if (count != 1)
-            //{
-            //    message = "Email incorrecto. La dirección de email debe contenter 1 solo '@'.";
-            //    return false;
-            //}
-            //int index = email.IndexOf("@");
-            //string endOfEmail = email.Substring(index);
         }
     }
 }
