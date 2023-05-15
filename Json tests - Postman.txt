@@ -1,0 +1,20 @@
+{
+    "Nombres": "Emma",
+    "Apellidos": "Thompson",
+    "FechaNacimiento": "1959-04-15",
+    "Cuit": "14336471946",
+    "Domicilio": "Paddington Av. 3588",
+    "TelCelular": "1578649932",
+    "Email": "NannyMcPhee@gmail.com"
+}
+
+
+{
+    "Nombres": "Mark Sinclair",
+    "Apellidos": "Vincent",
+    "FechaNacimiento": "1967-07-18",
+    "Cuit": "20186743294",
+    "Domicilio": "Alameda St 164",
+    "TelCelular": "1598176245",
+    "Email": "family@gmail.com"
+}
